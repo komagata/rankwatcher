@@ -1,0 +1,47 @@
+<h1>URL・検索検索ワード一覧</h1>
+
+<% if flash[:notice] -%>
+<div class="notice"><%= flash[:notice] %></div>
+<% end -%>
+
+<p>
+<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_site_path %>
+</p>
+
+<p>
+<%= will_paginate @sites, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
+</p>
+<br />
+
+<table class="simple_table">
+  <tr>
+    <th>URL</th>
+    <th>検索ワード</th>
+    <th colspan="2" width="100">アクション</th>
+  </tr>
+<%- for site in @sites -%>
+  <tr class="<%= cycle "even", "odd" %>">
+    <td style="vertical-align:top"><%=h site.url %></td>
+    <td>
+  <%- for search_word in site.search_words -%>
+      <div class="search_word"><%=h search_word.word %></div>
+  <%- end -%>
+    </td>
+    <td><%= link_to image_tag('edit.gif', :class => 'icon')+'編集', edit_site_path(site) %></td>
+    <td><%= link_to image_tag('delete.gif', :class => 'icon')+'削除', site, :confirm => '本当に削除してよろしいですか？', :method => :delete %></td>
+  </tr>
+<%- end -%>
+<%- if @sites.empty? -%>
+  <tr class="odd" style="text-align:center">
+    <td colspan="3" style="width:400px">登録されたURL・検索ワードはありません</td>
+  </tr>
+<%- end -%>
+</table>
+
+<p>
+<%= will_paginate @sites, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
+</p>
+
+<p>
+<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_site_path %>
+</p>

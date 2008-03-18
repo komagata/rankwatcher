@@ -1,0 +1,28 @@
+<%= error_messages_for :site %>
+
+<% form_for(@site) do |f| %>
+<table class="simple_table">
+  <tr>
+    <th colspan="2">URL・検索ワード</th>
+  </tr>
+  <tr class="odd">
+    <td><b>URL:</b></td>
+    <td><%= f.text_field :url, :size => 50 %></td>
+  </tr>
+
+<% @word ||= [] %>
+<%- 10.times do |i| -%>
+  <tr class="<%= cycle "even", "odd" %>">
+    <td><b>検索ワード<%= i+1 %>:</b></td>
+    <td>
+      <%= text_field_tag "word_#{i}", @word[i] ? @word[i][:value] : "", :size => 30 %>
+    </td>
+  </tr>
+<%- end -%>
+  <tr>
+    <td colspan="2" style="text-align:center;background:#fff">
+      <%= f.submit button_value %> <%= link_to '戻る', sites_path %>
+    </td>
+  </tr>
+</table>
+<% end %>

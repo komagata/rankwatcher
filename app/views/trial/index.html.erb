@@ -1,0 +1,86 @@
+<h1>今すぐ検索</h1>
+
+<p>調べたいURLと検索ワードを入力してください。（複数のキーワードも可能です）主要な検索エンジンでの現在の順位を表示します。</p>
+
+<% form_tag "/trial", :method => "post", :onsubmit => "Widget.Dialog.window('<p>検索中です･･･</p>',{'height':50})" do %>
+<table class="simple_table">
+  <tr><th colspan="2">今すぐ検索</th></tr>
+  <tr class="odd">
+    <td><strong>URL:</strong></td>
+    <td><%= text_field_tag "url", params[:url] || "http://", :size => 50 %></td>
+  </tr>
+  <tr class="odd">
+    <td><strong>検索ワード1:</strong></td>
+    <td><%= text_field_tag "word[]", params[:word] ? params[:word][0] : "", :size => 30 %></td>
+  </tr>
+  <tr class="odd">
+    <td><strong>検索ワード2:</strong></td>
+    <td><%= text_field_tag "word[]", params[:word] ? params[:word][1] : "", :size => 30 %></td>
+  </tr>
+  <tr class="odd">
+    <td><strong>検索ワード3:</strong></td>
+    <td><%= text_field_tag "word[]", params[:word] ? params[:word][2] : "", :size => 30 %></td>
+  </tr>
+  <tr class="even"><td colspan="2" style="text-align:center"><%= submit_tag "検索", :disabled_with => "検索中･･･" %></td></tr>
+</table>
+<% end -%>
+
+<% if request.post? -%>
+<br />
+<h2>検索結果</h2>
+
+<p>それぞれのインデックス数と検索結果での順位です。（100位より下は「圏外」となります）</p>
+
+<table class="simple_table">
+  <tr>
+    <th colspan="5">URL</th>
+  </tr>
+  <tr class="odd">
+    <td colspan="5"><%= link_to h(params[:url]), h(params[:url]) %></td>
+  </tr>
+  <tr style="height:10px;background:#fff">　<td colspan="5"></td></tr>
+  <tr>
+  </tr>
+  <tr nowrap="true">
+    <th>合計インデックス数</th>
+    <th><%= image_tag("google_favicon.png", :class => "icon") %>Google</th>
+    <th><%= image_tag("yahoo_favicon.png", :class => "icon") %>Yahoo!</th>
+    <th><%= image_tag("baidu_favicon.png", :class => "icon") %>Baidu</th>
+    <th><%= image_tag("msn_favicon.png", :class => "icon") %>MSN</th>
+  </tr>
+  <tr class="odd">
+    <td style="text-align:right"><%= @index_counts[:google]+@index_counts[:yahoo]+@index_counts[:baidu]+@index_counts[:msn] %></td>
+    <td style="text-align:right"><%= link_to h(@index_counts[:google]), h(@index_counts[:google_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(@index_counts[:yahoo]), h(@index_counts[:yahoo_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(@index_counts[:baidu]), h(@index_counts[:baidu_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(@index_counts[:msn]), h(@index_counts[:msn_url]), :target => "_blank" %></td>
+  </tr>
+  <tr style="height:10px;background:#fff">　<td colspan="5"></td></tr>
+  <tr nowrap="true">
+    <th>キーワード</th>
+    <th><%= image_tag("google_favicon.png", :class => "icon") %>Google</th>
+    <th><%= image_tag("yahoo_favicon.png", :class => "icon") %>Yahoo!</th>
+    <th><%= image_tag("baidu_favicon.png", :class => "icon") %>Baidu</th>
+    <th><%= image_tag("msn_favicon.png", :class => "icon") %>MSN</th>
+  </tr>
+<%- for rank in @ranks -%>
+  <tr class="odd">
+    <td><%= h rank[:word] %></td>
+    <td style="text-align:right"><%= link_to h(rank[:google] || "圏外"), h(rank[:google_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(rank[:yahoo] || "圏外"), h(rank[:yahoo_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(rank[:baidu] || "圏外"), h(rank[:baidu_url]), :target => "_blank" %></td>
+    <td style="text-align:right"><%= link_to h(rank[:msn] || "圏外"), h(rank[:msn_url]), :target => "_blank" %></td>
+  </tr>
+<%- end -%>
+</table>
+
+<div class="caution">
+  <p>SERP Ranksへ無料の登録をすればこの結果を毎日自動的に保存してくれます。あとでマイレポート画面で一覧したり、Excelでダウンロードしたりグラフで確認できます。設定次第でレポートを毎日メールで送ることもできます。また、月3000円の有料プランでは対象URL無制限、検索ワード無制限なので複数のサイトを持っている方や企業ユーザーの省力化になります。</p>
+
+   <p>日々ページランクやインデックス数を調べるとういう作業を1人日3万円（=時給3750円）の貴方がするべきでしょうか？月の最初の1時間で元が取れてしまいます。単純作業は機械に任せましょう。そのデータから新たな意味を読み取ってビジネスに生かしましょう。</p>
+
+  <p>さらにプレゼン資料用の蓄積されたデータやグラフを提供していきます。</p>
+
+  <p>登録はこちら</p>
+</div>
+<%- end -%>

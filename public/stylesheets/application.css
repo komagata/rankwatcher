@@ -1,0 +1,265 @@
+body {
+  margin: 0; padding: 0;
+  font-size: 14px;
+  font-family: "Trebuchet MS", Arial, Helvetica, verdana, osaka, sans-serif, ms gothic;
+/*  background: url(/images/bg.png) repeat-y center top; text-align: center; */
+  background: url(/images/bg.gif) repeat;
+/*  background: #ddd; */
+  color: #333;
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+a {
+  color: #009;
+}
+
+a:link {
+}
+
+a:visited {
+}
+
+a:hover {
+}
+
+img {
+  border: 0;
+}
+
+form {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+h2 {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+#container {
+  position: relative;
+  background: #fff;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#header {
+  margin: 0 auto;
+  padding: 15px;
+  position: relative;
+  text-align: left;
+  color: #fff;
+  background: #FF0084;
+}
+
+#title a {
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+#description {
+  margin: 5px 0 0 0;
+}
+
+#menu {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 14px;
+  color: #fff;
+}
+
+#menu a {
+  color: #fff;
+}
+
+#menu ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#menu ul li {
+  display: inline;
+  margin: 0 6px;
+  padding: 0;
+}
+
+ul#tab {
+  margin: 0;
+  padding: 6px 20px 6px 10px;
+  font-weight: bold;
+  list-style-type: none;
+  border-bottom: 1px solid #fff;
+  background: #FF0084;
+  text-align: right;
+}
+
+ul#tab li {
+  display: inline;
+}
+
+ul#tab li a {
+  /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+  padding: 6px 10px;
+  /* set border COLOR as desired; usually matches border color specified in #tabnav */
+  border: 0px solid #fff; 
+  /* set additional spacing between tabs as desired */
+  margin-right: 0;
+  text-decoration: none;
+  border-bottom: none;
+  background: #F3AAD0;
+}
+
+ul#tab li.selected { /* settings for selected tab */
+  /* set border color to page background color */
+  border-bottom: 1px solid #fff;
+  /* set background color to match above border color */
+  background-color: #fff;
+}
+
+ul#tab li.selected a { /* settings for selected tab link */
+  /* set selected tab background color as desired */
+  background-color: #fff;
+  /* set selected tab link color as desired */
+  color: #333;
+  position: relative;
+  top: 1px;
+  /* must change with respect to padding (X) above and below */
+  padding-top: 7px;
+}
+
+#content {
+  clear: both;
+  position: relative;
+  margin: 0 auto;
+  text-align: left;
+  background: #fff;
+  width: 100%;
+}
+
+#main {
+  float: left;
+  padding: 15px;
+}
+
+#sidebar {
+  float: right;
+  width: 200px;
+  padding: 15px;
+}
+
+#sidebar ul {
+  list-style-type: square;
+  margin: auto;
+}
+
+#sidebar li {
+  margin: 5px 0;
+}
+
+#footer {
+  clear: both;
+  margin: 0 auto;
+  padding: 10px 0;
+  height: 80px;
+  width: 100%;
+  line-height: 160%;
+  text-align: center;
+  border-top: solid 1px #666;
+  background: #ccc;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.icon {
+  vertical-align: middle;
+  border: none;
+  margin: 0 3px;
+}
+
+.simple_table {
+  border-collapse: collapse;
+/*  border-collapse: separate; border-spacing: 0px; */
+  background: #666;
+  border-top: solid 1px #666;
+  border-left: solid 1px #666;
+  border-right: solid 1px #666;
+}
+
+.simple_table th {
+  text-align: left;
+  background: #FF0084;
+  color: #fff;
+}
+
+.simple_table tr.even {
+  background: #eee;
+}
+
+.simple_table tr.odd {
+  background: #F9D8E9;
+}
+
+.simple_table th,
+.simple_table td {
+  font-size: 14px;
+  padding: 5px;
+  border: solid 1px #666;
+}
+
+.simple_table td {
+  border-bottom: solid 1px #666;
+}
+
+.simple_table td.top {
+  vertical-align: top;
+}
+
+.simple_table input,
+.simple_table textarea {
+  font-size: 12px;
+}
+
+#login_form {
+  background: #eee;
+  border: solid 5px #666;
+  padding: 20px;
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.fieldWithErrors {
+  display: inline:
+}
+
+.notice {
+  background: #eee;
+  border: solid 1px #0B53C1;
+  padding: 5px 15px;
+  margin: 10px 0px;
+}
+
+.dwindow #dinput {
+  width: 300px;
+}
+
+.dwindow .dbutton {
+  margin: auto 5px;
+}

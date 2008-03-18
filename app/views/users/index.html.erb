@@ -1,0 +1,37 @@
+<h1>ユーザー一覧</h1>
+
+<p>
+<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_user_path %>
+</p>
+
+<p>
+<%= will_paginate @users, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
+</p>
+<br />
+
+<table class="simple_table">
+  <tr>
+    <th>ID</th>
+    <th>アカウント</th>
+    <th>E-Mail</th>
+    <th colspan="2" width="70">アクション</th>
+  </tr>
+
+<% for user in @users %>
+  <tr class="<%= cycle "even", "odd" %>">
+    <td><%=h user.id %></td>
+    <td><%=h user.login %></td>
+    <td><%=h user.email %></td>
+    <td><%= link_to image_tag('edit.gif', :class => 'icon')+'編集', edit_user_path(user) %></td>
+    <td><%= link_to image_tag('delete.gif', :class => 'icon')+'削除', user, :confirm => '本当に削除しますか？', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<p>
+<%= will_paginate @users, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
+</p>
+
+<p>
+<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_user_path %>
+</p>

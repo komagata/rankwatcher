@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<title>SERParanoia</title>
+<link href="/favicon.ico" rel="shortcut icon" />
+<%= stylesheet_link_tag 'application' %>
+<%= stylesheet_link_tag 'will_paginate' %>
+<%= javascript_include_tag :defaults %>
+<%= javascript_include_tag 'Widget/Dialog' %>
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <div id="title"><a href="/">SERParanoia</a></div>
+    <div id="description">色んな検索ワードで自分のページ順位を検索・保存・集計</div>
+  </div><!-- id="header" -->
+
+  <div id="menu">
+    <ul>
+<% if logged_in? -%>
+      <li>ログイン：<%= current_user.login %></a> さん</li>
+      <li><a href="/account/logout">ログアウト</a></li>
+<% else -%>
+      <li><a href="/account/login">ログイン</a></li>
+<% end -%>
+      <li><a href="/help/index">ヘルプ</a></li>
+    </ul>
+  </div><!-- id="menu" -->
+
+  <ul id="tab">
+    <li<% if params[:controller] == 'top' %> class="selected"<% end %>><a href="/">トップ</a></li>
+    <li<% if params[:controller] == 'trial' %> class="selected"<% end %>><a href="/trial">今すぐ検索</a></li>
+<% if admin? -%>
+    <li<% if params[:controller] == 'users' %> class="selected"<% end %>><a href="/users">ユーザー</a></li>
+<%- end -%>
+<% if logged_in? -%>
+    <li<% if params[:controller] == 'report' %> class="selected"<% end %>><a href="/report">マイレポート</a></li>
+    <li<% if params[:controller] == 'sites' %> class="selected"<% end %>><a href="/sites">URL・検索ワード</a></li>
+    <li<% if params[:controller] == 'setting' %> class="selected"<% end %>><a href="/setting">設定</a></li>
+    <li<% if params[:controller] == 'account' %> class="selected"<% end %>><a href="/account">アカウント</a></li>
+<% end -%>
+  </ul>
+
+  <div id="content">
+    <div id="main">
+<%= yield %>
+    </div><!-- id="main" -->
+
+<%- if @sidebar -%>
+    <div id="sidebar">
+<%= @sidebar %>
+    </div>
+<%- end %>
+  </div><!-- id="content" -->
+
+  <div id="footer">
+    <strong>SERParanoia</strong> ©<%= Time.now.year %> <a href="http://p0t.jp" alt="p0t">komagata</a>
+  </div><!-- id="footer" -->
+</div><!-- id="container" -->
+</body>
+</html>
