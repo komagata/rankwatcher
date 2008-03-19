@@ -1,12 +1,58 @@
 <h1>マイレポート</h1>
 
-<img src="<%= url_for :controller => "graph", :action=> "index_count" %>">
+<div id="report_select">
+URLを選択：
+<%= select_tag("site", options_for_select(current_user.sites.collect {|s| [s.url, s.id] }, [@site.url, @site.id]), :onchange => "location.href='/report/index/'+$F('site')", :class => "simple_select") %>
+</div>
 
-<table class="simple_tabale">
+<h2>「<%= @site.url %>」のインデックス数</h2>
+
+<p><img src="<%= url_for :controller => "graph", :action=> "index_count", :params => {:site_id => @site.id} %>" width="750" height="400"></p>
+
+<table class="simple_table" width="750">
   <tr>
-    <th></th>
+    <th>日付</th>
+    <th><%= image_tag("google_favicon.png", :class => "icon") %>Google</th>
+    <th><%= image_tag("yahoo_favicon.png", :class => "icon") %>Yahoo!</th>
+    <th><%= image_tag("baidu_favicon.png", :class => "icon") %>Baidu</th>
+    <th><%= image_tag("msn_favicon.png", :class => "icon") %>MSN</th>
   </tr>
-  <tr>
-    <td></td>
+<%- for index_count in @site.index_counts -%>
+  <tr class="<%= cycle "even", "odd" %>" style="text-align:right">
+    <td><%= index_count.date.strftime("%Y年%m月%d日") %></td>
+    <td width="90"><%= index_count.google %></td>
+    <td width="90"><%= index_count.yahoo %></td>
+    <td width="90"><%= index_count.baidu %></td>
+    <td width="90"><%= index_count.msn %></td>
   </tr>
+<%- end -%>
 </table>
+
+<h2>「<%= @site.url %>」の検索ランク</h2>
+
+<%- for search_word in @site.search_words -%>
+<p><img src="<%= url_for :controller => "graph", :action=> "rank", :params => {:site_id => @site.id, :search_word_id => search_word.id} %>"></p>
+
+<table class="simple_table" width="750">
+  <tr>
+    <th>検索ワード</th>
+    <th width="130">日付</th>
+    <th width="90"><%= image_tag("google_favicon.png", :class => "icon") %>Google</th>
+    <th width="90"><%= image_tag("yahoo_favicon.png", :class => "icon") %>Yahoo!</th>
+    <th width="90"><%= image_tag("baidu_favicon.png", :class => "icon") %>Baidu</th>
+    <th width="90"><%= image_tag("msn_favicon.png", :class => "icon") %>MSN</th>
+  </tr>
+    <%- search_word.ranks.each_with_index do |rank, i| -%>
+  <tr class="<%= cycle "even", "odd" %>" style="text-align:right">
+      <%- if i == 0 -%>
+    <td rowspan="<%= search_word.ranks.size %>" style="vertical-align:top;text-align:left"><%= search_word.word %></td>
+      <%- end -%>
+    <td><%= rank.date.strftime("%Y年%m月%d日") %></td>
+    <td><%= rank.google || "圏外" %></td>
+    <td><%= rank.yahoo || "圏外" %></td>
+    <td><%= rank.baidu || "圏外" %></td>
+    <td><%= rank.msn || "圏外" %></td>
+  </tr>
+    <%- end -%>
+</table>
+<%- end -%>

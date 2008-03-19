@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   helper :all # include all helpers, all the time
-
+  before_filter :login_required
   before_filter :sidebar
 
   # See ActionController::RequestForgeryProtection for details

@@ -11,7 +11,7 @@
   </tr>
 
 <% @word ||= [] %>
-<%- 10.times do |i| -%>
+<%- SEARCH_WORD_NUM.times do |i| -%>
   <tr class="<%= cycle "even", "odd" %>">
     <td><b>検索ワード<%= i+1 %>:</b></td>
     <td>
@@ -19,10 +19,13 @@
     </td>
   </tr>
 <%- end -%>
-  <tr>
-    <td colspan="2" style="text-align:center;background:#fff">
-      <%= f.submit button_value %> <%= link_to '戻る', sites_path %>
-    </td>
-  </tr>
 </table>
+
+<div class="buttons">
+  <button type="submit" class="positive">
+    <%= image_tag("check.gif")+button_value %>
+  </button>
+
+  <%= link_to image_tag("cancel.gif")+"戻る", sites_path, :class => "negative" %>
+</div>
 <% end %>

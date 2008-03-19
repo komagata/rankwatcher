@@ -6,10 +6,9 @@ class GraphController < ApplicationController
   end
 
   def index_count
-    site = current_user.sites.first
-    date = {}
-    google, yahoo, baidu, msn = [], [], [], [] 
-    
+    site = current_user.sites.find(params[:site_id])
+
+    date, google, yahoo, baidu, msn = {}, [], [], [], []
     site.index_counts.each_with_index do |index_count, i|
       date[i] = index_count.date.strftime("%m-%d")
       google << index_count.google
@@ -18,21 +17,50 @@ class GraphController < ApplicationController
       msn << index_count.msn
     end
 
-    g = Gruff::Line.new(500)
-    #g.theme_odeo
-    g.font = FONT
-    g.title = "インデックス数"
-
-    g.data("Google", google)
-    g.data("Yahoo!", yahoo)
-    g.data("Baidu", baidu)
-    g.data("MSN", msn)
-
+    g = graph("インデックス数")
+    g.data("Google", google, "blue")
+    g.data("Yahoo!", yahoo, "red")
+    g.data("Baidu", baidu, "orange")
+    g.data("MSN", msn, "green")
     g.labels = date
 
     send_data(g.to_blob, :type => 'image/png')
   end
 
   def rank
+    site = current_user.sites.find(params[:site_id])
+    search_word = site.search_words.find(params[:search_word_id])
+
+    date, google, yahoo, baidu, msn = {}, [], [], [], []
+    search_word.ranks.each_with_index do |rank, i|
+      date[i] = rank.date.strftime("%m-%d")
+      google << rank.google
+      yahoo << rank.yahoo
+      baidu << rank.baidu
+      msn << rank.msn
+    end
+
+    g = graph("「#{search_word.word}」での検索ランク")
+    g.data("Google", google, "blue")
+    g.data("Yahoo!", yahoo, "red")
+    g.data("Baidu", baidu, "orange")
+    g.data("MSN", msn, "green")
+    g.labels = date
+
+    send_data(g.to_blob, :type => 'image/png')
+  end
+
+  private
+  def graph(title)
+    g = Gruff::Line.new("750x400")
+#    g.theme = {:background_colors => ["#FF0084", "#FF0084"]}
+#    g.font_color = "#ffffff"
+    g.theme_37signals
+    g.font = FONT
+    g.title = title
+    g.title_font_size = 22
+    g.marker_font_size = 14
+    g.legend_font_size = 16
+    g
   end
 end

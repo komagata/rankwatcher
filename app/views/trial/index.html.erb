@@ -21,8 +21,13 @@
     <td><strong>検索ワード3:</strong></td>
     <td><%= text_field_tag "word[]", params[:word] ? params[:word][2] : "", :size => 30 %></td>
   </tr>
-  <tr class="even"><td colspan="2" style="text-align:center"><%= submit_tag "検索", :disabled_with => "検索中･･･" %></td></tr>
 </table>
+<div class="buttons">
+  <button type="submit" class="positive">
+    <%= image_tag("check.gif")+"検索" %>
+  </button>
+  <span style="clear:both">&nbsp;</span>
+</div>
 <% end -%>
 
 <% if request.post? -%>

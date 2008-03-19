@@ -26,6 +26,7 @@ class SitesController < ApplicationController
   # GET /sites/new.xml
   def new
     @site = Site.new(:user_id => current_user.id)
+    @site.url = "http://"
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,7 +48,7 @@ class SitesController < ApplicationController
   def create
     @site = Site.new(params[:site])
     @site.user_id = current_user.id
-    10.times do |i|
+    SEARCH_WORD_NUM.times do |i|
       unless params["word_#{i}"].empty?
         @site.search_words << SearchWord.create(:word => params["word_#{i}"])
       end
@@ -70,8 +71,8 @@ class SitesController < ApplicationController
   def update
     @site = Site.find(params[:id])
     @site.user_id = current_user.id
-    10.times do |i|
-      if params["word_#{i}"].empty?
+    SEARCH_WORD_NUM.times do |i|
+      if params["word_#{i}"] == "" 
         if @site.search_words[i]
           @site.search_words[i].destroy
         end
@@ -80,7 +81,7 @@ class SitesController < ApplicationController
           @site.search_words[i].word = params["word_#{i}"]
           @site.search_words[i].save
         else
-          @site.search_words << SearchWord.create(:word => params["word_#{i}"])
+          SearchWord.create(:site_id => @site.id, :word => params["word_#{i}"])
         end
       end
     end

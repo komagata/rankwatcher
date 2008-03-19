@@ -3,10 +3,12 @@ require File.dirname(__FILE__) + '/../config/boot'
 require File.dirname(__FILE__) + '/../config/environment'
 require 'search'
 
+DATE_FORMAT = "%Y-%m-%d"
+
 Site.find(:all).each do |site|
   index_count = Search.all_index_count(site.url)
   index_count[:site_id] = site.id
-  index_count[:date] = Time.new.strftime("%Y-%m-%d")
+  index_count[:date] = Time.new.strftime(DATE_FORMAT)
 
   Site.transaction do
     IndexCount.create(index_count)
@@ -14,7 +16,7 @@ Site.find(:all).each do |site|
     site.search_words.each do |search_word|
       rank = Search.all_rank(site.url, search_word.word)
       rank[:search_word_id] = search_word.id
-      rank[:date] = Time.new.strftime("%Y-%m-%d")
+      rank[:date] = Time.new.strftime(DATE_FORMAT)
       Rank.create(rank)
     end
   end

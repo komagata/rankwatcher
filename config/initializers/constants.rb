@@ -1,1 +1,2 @@
 FONT = "#{RAILS_ROOT}/vendor/M+1P+IPAG.ttf"
+SEARCH_WORD_NUM = 5

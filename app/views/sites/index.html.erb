@@ -1,35 +1,42 @@
-<h1>URL・検索検索ワード一覧</h1>
+<h1>URL・検索ワード一覧</h1>
 
 <% if flash[:notice] -%>
 <div class="notice"><%= flash[:notice] %></div>
 <% end -%>
 
-<p>
-<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_site_path %>
-</p>
+<div class="buttons">
+  <%= link_to image_tag("add.gif")+"登録", new_site_path, :class => "positive" %>
+  <span style="clear:both">&nbsp;</span>
+</div>
 
 <p>
 <%= will_paginate @sites, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
 </p>
 <br />
 
-<table class="simple_table">
+<table class="simple_table" width="750px">
   <tr>
     <th>URL</th>
     <th>検索ワード</th>
-    <th colspan="2" width="100">アクション</th>
+    <th width="160">アクション</th>
   </tr>
 <%- for site in @sites -%>
-  <tr class="<%= cycle "even", "odd" %>">
-    <td style="vertical-align:top"><%=h site.url %></td>
-    <td>
-  <%- for search_word in site.search_words -%>
-      <div class="search_word"><%=h search_word.word %></div>
-  <%- end -%>
+  <%- site.search_words.each_with_index do |search_word, i| -%>
+  <tr style="background:white">
+    <%- if i == 0 %>
+    <td rowspan="<%= site.search_words.size %>" style="vertical-align:top"><%=h site.url %></td>
+    <%- end -%>
+    <td><%=h search_word.word %></td>
+    <%- if i == 0 %>
+    <td width="160" rowspan="<%= site.search_words.size %>">
+      <div class="buttons">
+        <%= link_to image_tag("edit.gif")+"編集", edit_site_path(site), :class => "positive" %>
+        <%= link_to image_tag("delete.gif")+"削除", site, :class => "positive", :confirm => "本当に削除してよろしいですか？", :method => :delete %>
+      </div>
     </td>
-    <td><%= link_to image_tag('edit.gif', :class => 'icon')+'編集', edit_site_path(site) %></td>
-    <td><%= link_to image_tag('delete.gif', :class => 'icon')+'削除', site, :confirm => '本当に削除してよろしいですか？', :method => :delete %></td>
+    <%- end -%>
   </tr>
+  <%- end -%>
 <%- end -%>
 <%- if @sites.empty? -%>
   <tr class="odd" style="text-align:center">
@@ -42,6 +49,7 @@
 <%= will_paginate @sites, :prev_label=>'&#171;前', :next_label=>'次&#187;' %>
 </p>
 
-<p>
-<%= link_to image_tag('add.gif', :class => 'icon')+'登録', new_site_path %>
-</p>
+<div class="buttons">
+  <%= link_to image_tag("add.gif")+"登録", new_site_path, :class => "positive" %>
+  <span style="clear:both">&nbsp;</span>
+</div>

@@ -101,10 +101,12 @@ module Search
       results = []
       Hpricot(open(url)).search("div#yschweb ol li").each_with_index do |el, n|
         if el.at("a.yschttl")
+          description = el.at("div.yschabstr") ? el.at("div.yschabstr").inner_html.to_readable.html2text : ""
+
           results << {:order => n+1,
             :title => el.at("a.yschttl").inner_html.to_readable.html2text,
             :url => "http:"+el.at("a.yschttl").attributes["href"].split("*-http%3A")[-1],
-            :description => el.at("div.yschabstr").inner_html.to_readable.html2text}
+            :description => description}
         else
           break
         end
