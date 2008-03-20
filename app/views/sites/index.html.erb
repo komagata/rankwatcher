@@ -28,8 +28,8 @@
     <%- end -%>
     <td><%=h search_word.word %></td>
     <%- if i == 0 %>
-    <td width="160" rowspan="<%= site.search_words.size %>">
-      <div class="buttons">
+    <td width="160" rowspan="<%= site.search_words.size %>" style="padding:0 !important">
+      <div class="buttons" style="padding-left:10px">
         <%= link_to image_tag("edit.gif")+"編集", edit_site_path(site), :class => "positive" %>
         <%= link_to image_tag("delete.gif")+"削除", site, :class => "positive", :confirm => "本当に削除してよろしいですか？", :method => :delete %>
       </div>
