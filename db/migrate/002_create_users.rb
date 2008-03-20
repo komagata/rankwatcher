@@ -5,7 +5,8 @@ class CreateUsers < ActiveRecord::Migration
       t.column :email,                     :string
       t.column :crypted_password,          :string, :limit => 40
       t.column :salt,                      :string, :limit => 40
-      t.column :payment,                   :boolean, :default => false
+      t.column :plan,                      :integer, :default => 1
+      t.column :report,                    :boolean, :default => true
       t.column :created_at,                :datetime
       t.column :updated_at,                :datetime
       t.column :remember_token,            :string

@@ -1,0 +1,138 @@
+<h1>アカウント設定</h1>
+
+<%= error_messages_for :user %>
+
+<%- if flash[:notice] -%>
+<div class="notice"><%= flash[:notice] %></div>
+<%- end -%>
+
+<h2>アカウントのプラン</h2>
+
+<table class="simple_table">
+  <tr>
+    <th width="180">プラン名</th>
+    <th>詳細</th>
+    <th width="100">料金</th>
+    <th>登録</th>
+  </tr>
+  <tr class="odd">
+    <td><b>無料プラン</b></td>
+    <td>このプランでは1つのURLを登録でき、1URLに付き3個の検索ワードを設定できます。</td>
+    <td>無料</td>
+    <td>
+<A HREF="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=komagata%40gmail%2ecom">
+<IMG SRC="https://www.paypal.com/ja_JP/JP/i/btn/btn_unsubscribe_LG.gif" BORDER="0">
+</A>
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>パーソナル3 URLプラン</b></td>
+    <td>このプランでは3つのURLを登録でき、1URLに付き5個の検索ワードを設定できます。</td>
+    <td>月額 300円</td>
+    <td>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="image" src="https://www.paypal.com/ja_JP/JP/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="cmd" value="_xclick-subscriptions">
+<input type="hidden" name="business" value="komagata@gmail.com">
+<input type="hidden" name="item_name" value="パーソナル3URLプラン">
+<input type="hidden" name="item_number" value="3">
+<input type="hidden" name="page_style" value="Primary">
+<input type="hidden" name="no_shipping" value="1">
+<input type="hidden" name="return" value="http://yahoo.co.jp">
+<input type="hidden" name="cancel_return" value="http://google.co.jp">
+<input type="hidden" name="no_note" value="1">
+<input type="hidden" name="currency_code" value="JPY">
+<input type="hidden" name="lc" value="JP">
+<input type="hidden" name="bn" value="PP-SubscriptionsBF">
+<input type="hidden" name="a3" value="300">
+<input type="hidden" name="p3" value="1">
+<input type="hidden" name="t3" value="M">
+<input type="hidden" name="src" value="1">
+<input type="hidden" name="sra" value="1">
+</form>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>ビジネス5 URLプラン</b></td>
+    <td>このプランでは5つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
+    <td>月額 2,500円</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>ビジネス10 URLプラン</b></td>
+    <td>このプランでは10つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
+    <td>月額 4,000円</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>ビジネス30 URLプラン</b></td>
+    <td>このプランでは30つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
+    <td>月額 13,000円</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>ビジネス50 URLプラン</b></td>
+    <td>このプランでは50つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
+    <td>月額 20,000円</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td><b>ビジネス100 URLプラン</b></td>
+    <td>このプランでは100つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
+    <td>月額 38,000円</td>
+    <td>
+
+    </td>
+  </tr>
+  <tr class="odd">
+    <td colspan="4">現在のアカウントは<b>「無料プラン」</b>です。</td>
+  </tr>
+</table>
+
+<h2>アカウント設定</h2>
+
+<% form_tag do %>
+<table class="simple_table">
+  <tr>
+    <th colspan="5">アカウント設定</th>
+  </tr>
+  <tr class="odd">
+    <td><b>アカウント:</b></td>
+    <td><%= text_field :user, :login, :size => 30 %></td>
+  </tr>
+  <tr class="odd">
+    <td><b>メール:</b></td>
+    <td><%= text_field :user, :email, :size => 30 %></td>
+  </tr>
+  <tr class="odd">
+    <td><b>レポートメールを配信する:</b></td>
+    <td><%= select :user, :report, [["配信する", true], ["配信しない", false]] %></td>
+  </tr>
+  <tr class="odd">
+    <td><b>新パスワード:</b></td>
+    <td><%= password_field :user, :password, :size => 30 %></td>
+  </tr>
+  <tr class="odd">
+    <td><b>新パスワード（確認）:</b></td>
+    <td><%= password_field :user, :password_confirmation, :size => 30 %></td>
+  </tr>
+</table>
+
+<div class="buttons">
+  <button type="submit" name="account" class="positive">
+    <%= image_tag("check.gif")+"編集" %>
+  </button>
+</div>
+<br style="clear:both" />
+<% end %>

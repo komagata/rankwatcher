@@ -18,7 +18,7 @@ class AccountController < ApplicationController
       redirect_back_or_default(:controller => 'sites', :action => 'index')
     end
   end
-=begin
+
   def signup
     @user = User.new(params[:user])
     return unless request.post?
@@ -29,11 +29,21 @@ class AccountController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     render :action => 'signup'
   end
-=end 
+
   def logout
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
     reset_session
-    redirect_back_or_default(:controller => '/account', :action => 'login')
+    redirect_back_or_default(:controller => 'account', :action => 'login')
+  end
+
+  def edit
+    @user = current_user
+    return unless request.post?
+
+    if current_user.update_attributes(params[:user])
+      flash[:notice] = "アカウントを編集しました。"
+      redirect_to :controller => "account", :action => "edit"
+    end
   end
 end
