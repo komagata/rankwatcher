@@ -5,7 +5,7 @@
 <% end -%>
 
 <div class="buttons">
-  <%= link_to image_tag("add.gif")+"登録", new_site_path, :class => "positive" %>
+  <%= link_to image_tag("check.gif")+"登録", new_site_path, :class => "positive" %>
   <span style="clear:both">&nbsp;</span>
 </div>
 
@@ -31,7 +31,7 @@
     <td width="160" rowspan="<%= site.search_words.size %>" style="padding:0 !important">
       <div class="buttons" style="padding-left:10px">
         <%= link_to image_tag("edit.gif")+"編集", edit_site_path(site), :class => "positive" %>
-        <%= link_to image_tag("delete.gif")+"削除", site, :class => "positive", :confirm => "本当に削除してよろしいですか？", :method => :delete %>
+        <%= link_to image_tag("cancel.gif")+"削除", site, :class => "positive", :confirm => "本当に削除してよろしいですか？", :method => :delete %>
       </div>
     </td>
     <%- end -%>
@@ -50,6 +50,6 @@
 </p>
 
 <div class="buttons">
-  <%= link_to image_tag("add.gif")+"登録", new_site_path, :class => "positive" %>
+  <%= link_to image_tag("check.gif")+"登録", new_site_path, :class => "positive" %>
   <span style="clear:both">&nbsp;</span>
 </div>

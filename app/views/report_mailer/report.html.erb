@@ -1,0 +1,26 @@
+<%= @report[:login] %>さん
+
+SERParanoiaからの<%= @report[:date] %>のレポートです。
+
+<%- for site in @report[:sites] -%>
+*「 <%= site[:url] %> 」のレポート **************
+
+* インデックス数 ***********
+
+Google: <%= site[:index_count][:google] || 0 %>
+Yahoo!: <%= site[:index_count][:yahoo] || 0 %>
+Baidu:  <%= site[:index_count][:baidu] || 0 %>
+MSN:    <%= site[:index_count][:msn] || 0 %>
+
+* 検索ランク ***************
+
+  <%- for search_word in site[:search_words] -%>
+** 「 <%= search_word[:word] %> 」での検索ランク **
+
+Google: <%= search_word[:rank][:google] || "圏外" %>
+Yahoo!: <%= search_word[:rank][:yahoo] || "圏外" %>
+Baidu:  <%= search_word[:rank][:baidu] || "圏外" %>
+MSN:    <%= search_word[:rank][:msn] || "圏外" %>
+
+  <%- end -%>
+<%- end -%>

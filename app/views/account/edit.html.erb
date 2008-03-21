@@ -21,7 +21,7 @@
     <td>無料</td>
     <td>
 <A HREF="https://www.paypal.com/cgi-bin/webscr?cmd=_subscr-find&alias=komagata%40gmail%2ecom">
-<IMG SRC="https://www.paypal.com/ja_JP/JP/i/btn/btn_unsubscribe_LG.gif" BORDER="0">
+<IMG SRC="<%= "#{root_url}/images/register.gif" %>" BORDER="0">
 </A>
     </td>
   </tr>
@@ -30,29 +30,13 @@
     <td>このプランでは3つのURLを登録でき、1URLに付き5個の検索ワードを設定できます。</td>
     <td>月額 300円</td>
     <td>
-
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="image" src="https://www.paypal.com/ja_JP/JP/i/btn/btn_subscribe_LG.gif" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
 <img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
-<input type="hidden" name="cmd" value="_xclick-subscriptions">
-<input type="hidden" name="business" value="komagata@gmail.com">
-<input type="hidden" name="item_name" value="パーソナル3URLプラン">
-<input type="hidden" name="item_number" value="3">
-<input type="hidden" name="page_style" value="Primary">
-<input type="hidden" name="no_shipping" value="1">
-<input type="hidden" name="return" value="http://yahoo.co.jp">
-<input type="hidden" name="cancel_return" value="http://google.co.jp">
-<input type="hidden" name="no_note" value="1">
-<input type="hidden" name="currency_code" value="JPY">
-<input type="hidden" name="lc" value="JP">
-<input type="hidden" name="bn" value="PP-SubscriptionsBF">
-<input type="hidden" name="a3" value="300">
-<input type="hidden" name="p3" value="1">
-<input type="hidden" name="t3" value="M">
-<input type="hidden" name="src" value="1">
-<input type="hidden" name="sra" value="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
 </form>
-
     </td>
   </tr>
   <tr class="odd">
@@ -60,7 +44,13 @@
     <td>このプランでは5つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
     <td>月額 2,500円</td>
     <td>
-
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
     </td>
   </tr>
   <tr class="odd">
@@ -68,7 +58,13 @@
     <td>このプランでは10つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
     <td>月額 4,000円</td>
     <td>
-
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
     </td>
   </tr>
   <tr class="odd">
@@ -76,7 +72,13 @@
     <td>このプランでは30つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
     <td>月額 13,000円</td>
     <td>
-
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
     </td>
   </tr>
   <tr class="odd">
@@ -84,7 +86,13 @@
     <td>このプランでは50つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
     <td>月額 20,000円</td>
     <td>
-
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
     </td>
   </tr>
   <tr class="odd">
@@ -92,11 +100,14 @@
     <td>このプランでは100つのURLを登録でき、1URLに付き10個の検索ワードを設定できます。</td>
     <td>月額 38,000円</td>
     <td>
-
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="image" src="<%= "#{root_url}/images/register.gif" %>" border="0" name="submit" alt="PayPal - オンラインで安全・簡単にお支払い">
+<img alt="" border="0" src="https://www.paypal.com/ja_JP/i/scr/pixel.gif" width="1" height="1">
+<input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+">
+</form>
     </td>
-  </tr>
-  <tr class="odd">
-    <td colspan="4">現在のアカウントは<b>「無料プラン」</b>です。</td>
   </tr>
 </table>
 
@@ -118,6 +129,10 @@
   <tr class="odd">
     <td><b>レポートメールを配信する:</b></td>
     <td><%= select :user, :report, [["配信する", true], ["配信しない", false]] %></td>
+  </tr>
+  <tr class="odd">
+    <td><b>現在のプラン:</b></td>
+    <td>無料プラン</td>
   </tr>
   <tr class="odd">
     <td><b>新パスワード:</b></td>

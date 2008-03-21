@@ -5,19 +5,37 @@ require 'search'
 
 DATE_FORMAT = "%Y-%m-%d"
 
-Site.find(:all).each do |site|
-  index_count = Search.all_index_count(site.url)
-  index_count[:site_id] = site.id
-  index_count[:date] = Time.new.strftime(DATE_FORMAT)
+User.find(:all).each do |user|
 
-  Site.transaction do
-    IndexCount.create(index_count)
+  sites = []
+  user.sites.each do |site|
+    index_count = Search.all_index_count(site.url)
+    index_count[:site_id] = site.id
+    index_count[:date] = Time.new.strftime(DATE_FORMAT)
 
-    site.search_words.each do |search_word|
-      rank = Search.all_rank(site.url, search_word.word)
-      rank[:search_word_id] = search_word.id
-      rank[:date] = Time.new.strftime(DATE_FORMAT)
-      Rank.create(rank)
+
+    search_words = []
+    Site.transaction do
+      IndexCount.create(index_count)
+
+      site.search_words.each do |search_word|
+        rank = Search.all_rank(site.url, search_word.word)
+        rank[:search_word_id] = search_word.id
+        rank[:date] = Time.new.strftime(DATE_FORMAT)
+        Rank.create(rank)
+
+        search_words << {:word => search_word.word, :rank => rank}
+      end
     end
+
+    sites << {:site => site,
+      :url => site.url,
+      :index_count => index_count,
+      :search_words => search_words}
   end
+  report = {:user => user,
+    :login => user.login,
+    :sites => sites,
+    :date => Time.new.strftime("%Y年%m月%d日")}
+  ReportMailer.deliver_report(user.email, report)
 end

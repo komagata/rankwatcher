@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  init_gettext 'rank'
   include AuthenticatedSystem
   include ApplicationHelper
 
