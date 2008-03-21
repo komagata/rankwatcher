@@ -33,14 +33,16 @@ class GraphController < ApplicationController
 
     date, google, yahoo, baidu, msn = {}, [], [], [], []
     search_word.ranks.each_with_index do |rank, i|
-      date[i] = rank.date.strftime("%m-%d")
-      google << rank.google
-      yahoo << rank.yahoo
-      baidu << rank.baidu
-      msn << rank.msn
+      date[i] = rank.date.strftime("%d")
+      google << (rank.google || 100)
+      yahoo << (rank.yahoo || 100)
+      baidu << (rank.baidu || 100)
+      msn << (rank.msn || 100)
     end
 
     g = graph("「#{search_word.word}」での検索ランク")
+    g.maximum_value = 100
+    g.minimum_value = 1
     g.data("Google", google, "blue")
     g.data("Yahoo!", yahoo, "red")
     g.data("Baidu", baidu, "orange")
