@@ -22,7 +22,7 @@
   </tr>
 <%- for site in @sites -%>
   <%- site.search_words.each_with_index do |search_word, i| -%>
-  <tr style="background:white">
+  <tr class="<%= cycle "even", "odd" %>">
     <%- if i == 0 %>
     <td rowspan="<%= site.search_words.size %>" style="vertical-align:top"><%=h site.url %></td>
     <%- end -%>

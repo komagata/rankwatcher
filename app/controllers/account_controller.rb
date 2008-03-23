@@ -18,7 +18,7 @@ class AccountController < ApplicationController
       redirect_back_or_default(:controller => 'sites', :action => 'index')
     end
   end
-
+=begin
   def signup
     @user = User.new(params[:user])
     return unless request.post?
@@ -29,7 +29,7 @@ class AccountController < ApplicationController
   rescue ActiveRecord::RecordInvalid
     render :action => 'signup'
   end
-
+=end
   def logout
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token

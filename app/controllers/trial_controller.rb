@@ -1,6 +1,7 @@
 require 'search'
 
 class TrialController < ApplicationController
+  skip_before_filter :login_required
 
   def index
     return unless request.post?

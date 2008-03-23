@@ -37,5 +37,5 @@ User.find(:all).each do |user|
     :login => user.login,
     :sites => sites,
     :date => Time.new.strftime("%Y年%m月%d日")}
-  ReportMailer.deliver_report(user.email, report)
+  ReportMailer.deliver_report(user.email, report) if user.report
 end

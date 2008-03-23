@@ -123,7 +123,8 @@ module Search
     end
 
     def self.index_count(url)
-      html = open(search_url("site:#{url.gsub(/^http:\/\//, "")}", 1)) {|f| f.read }
+      url = url.gsub(/^http:\/\//, "").gsub(/\/$/, "")
+      html = open(search_url("site:#{url}", 1)) {|f| f.read }
       html.match(/<strong>([0-9,]+)<\/strong>/).to_a.values_at(1)[0].gsub(",", "").to_i
     rescue
       0

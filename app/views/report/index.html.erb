@@ -1,9 +1,29 @@
 <h1>マイレポート</h1>
 
-<div id="report_select">
-URLを選択：
-<%= select_tag("site", options_for_select(current_user.sites.collect {|s| [s.url, s.id] }, [@site.url, @site.id]), :onchange => "location.href='/report/index/'+$F('site')", :class => "simple_select") %>
-</div>
+<%- if current_user.sites.size == 0 -%>
+<p>URL・検索ワードが登録されていません。<%= link_to "こちら", :controller => "sites" %>から登録してください。</p>
+<%- else -%>
+<%- form_tag "/report" do -%>
+<table class="simple_table" width="750">
+  <tr>
+    <th>集計期間</th>
+    <th>URL</th>
+    <th>集計</th>
+  </tr>
+  <tr class="odd">
+    <td>
+<%= date_select :start, :start_year => Date.today.year-10, :end_year => Date.today.year %> ～ 
+<%= date_select :end, :start_year => Date.today.year-10, :end_year => Date.today.year %>
+    </td>
+    <td>
+      <%= select_tag(:site_id, options_for_select(current_user.sites.collect {|s| [s.url, s.id] }, [@site.url, @site.id])) %>
+    </td>
+    <td style="vertical-align:middle">
+      <input type="image" src="<%= "#{root_url}/images/calc.gif" %>" border="0" name="submit">
+    </td>
+  </tr>
+</table>
+<%- end -%>
 
 <h2>「<%= @site.url %>」のインデックス数</h2>
 
@@ -55,4 +75,5 @@ URLを選択：
   </tr>
     <%- end -%>
 </table>
+<%- end -%>
 <%- end -%>

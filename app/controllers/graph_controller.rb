@@ -10,7 +10,7 @@ class GraphController < ApplicationController
 
     date, google, yahoo, baidu, msn = {}, [], [], [], []
     site.index_counts.each_with_index do |index_count, i|
-      date[i] = index_count.date.strftime("%m-%d")
+      date[i] = index_count.date.strftime("%d")
       google << index_count.google
       yahoo << index_count.yahoo
       baidu << index_count.baidu
