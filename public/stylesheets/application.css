@@ -293,10 +293,15 @@ label {
     margin:0 7px 0 0;
     background-color:#eee;
     border:1px solid #bbb;
-    border-top:1px solid #efefef;
-    border-left:1px solid #eee;
+    border-top:1px solid #e3e3e3;
+    border-left:1px solid #e3e3e3;
 
-    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+  font-family: "メイリオ", "Meiryo", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "Osaka", "ＭＳ Ｐゴシック", sans-serif;
+
+
+/*
+    font-family:"MS Gothic", "ヒラギノ角ゴ Pro W3", "Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+*/
     font-size:100%;
     line-height:130%;
     text-decoration:none;
